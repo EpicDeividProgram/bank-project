@@ -16,4 +16,17 @@ class Conexion():
         clave TEXT)"""
         cur = self.con.cursor()
         cur.execute(sql_create_table1)
+        cur.close()
+        self.CrearAdmin()
+        
+        
+    def CrearAdmin(self):
+        try:
+            sql_insert = """INSERT INTO usuarios values(null,'{}','{}','{}')""".format("Administrador", "Admin", "Admin123")
+            cur = self.con.cursor()
+            cur.execute(sql_insert)
+            self.con.commit()
+        except Exception as ex:
+            print("este usuario admin ya existe: ", ex)
+            
         
